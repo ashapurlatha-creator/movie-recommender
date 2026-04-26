@@ -1,0 +1,6 @@
+PS C:\Users\Ashapur latha\OneDrive\Desktop\movie-recommender> & "c:\Users\Ashapur latha\OneDrive\Desktop\movie-recommender\.venv\Scripts\Activate.ps1"
+(.venv) PS C:\Users\Ashapur latha\OneDrive\Desktop\movie-recommender> python scripts/env_check.py
+--- Environment Security Check ---
+STATUS: SUCCESS
+Your project is safely isolated in: C:\Users\Ashapur latha\OneDrive\Desktop\movie-recommender\.venv\Scripts\python.exe
+Environment Python Version: 3.13.5

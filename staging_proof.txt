@@ -1,0 +1,1 @@
+I saw the blue bar in the gutter, staged the change, and the bar disappeared after the commit

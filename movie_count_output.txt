@@ -1,0 +1,5 @@
+(.venv) PS C:\Users\Ashapur latha\OneDrive\Desktop\movie-recommender>  python scripts/modular_loader.py
+Starting the program...
+✅ Success: Data loaded and Nulls handled!
+Total movies: 4809
+   

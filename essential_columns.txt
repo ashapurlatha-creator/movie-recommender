@@ -1,0 +1,3 @@
+['genres', 'id', 'keywords', 'overview', 'title']
+
+The overview column is important because it contains the movie description which helps in understanding the story for recommendations.

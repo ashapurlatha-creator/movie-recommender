@@ -1,0 +1,3 @@
+3783b34 (HEAD -> main, origin/main) feat: integrate modular functions into final recommendation blueprint
+9941be3 add debug evidence file
+03319aa docs: add debugging practice script for logic flow visualization

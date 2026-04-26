@@ -1,0 +1,10 @@
+PS C:\Users\Ashapur latha\OneDrive\Desktop\movie-recommender> python scripts/data_intro.py
+--- Raw CSV Data View ---
+['id', 'title', 'genre', 'rating']
+['1', 'Iron Man', 'Action', '8.5']
+['2', 'Avengers', 'Action', '8.8']
+['3', 'The Lion King', 'Animation', '8.5']
+['4', 'Avatar', 'Action', '7.8']
+['5', 'Joker', 'Drama', '8.4']
+
+Total movies found: 5

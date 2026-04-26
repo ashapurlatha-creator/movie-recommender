@@ -1,0 +1,4 @@
+movies_list.pkl: 1673 KB
+similarity.pkl: 180226 KB
+
+Both files are NOT 0 KB. Engine saved successfully.

@@ -1,0 +1,8 @@
+--- TF-IDF Importance Scores ---
+       jedi     movie     pilot     space
+0  0.704909  0.501549  0.000000  0.501549
+1  0.000000  0.501549  0.704909  0.501549
+
+Logic Check:
+Notice how 'jedi' and 'pilot' have higher scores than 'space'?
+Because 'space' is in both movies, the machine knows it is less unique!

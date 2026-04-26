@@ -1,0 +1,13 @@
+# Ignore the Python virtual environment (this folder is huge and unnecessary to track)
+.venv/
+__pycache__/
+
+# Ignore our large movie dataset (we keep the data locally, not in the version history)
+data/*.csv
+
+# Ignore hidden system files from Mac or Windows
+.DS_Store
+Thumbs.db
+
+# Ignore any local environment settings
+.env

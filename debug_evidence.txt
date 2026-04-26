@@ -1,0 +1,1 @@
+I stepped into the function and saw that clean_text was equal to 'iron man' before it was returned.

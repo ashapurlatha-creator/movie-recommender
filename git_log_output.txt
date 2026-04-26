@@ -1,0 +1,12 @@
+cf9835e (HEAD -> main, origin/main) add output file for multi argument task
+11f510c feat: add genre validation function and initial test
+df2e56e feat: add genre validation function and initial test
+975d946 Completed multi-argument challenge
+f6157cf Implement function parameters for dynamic searching
+8feb8a2 Add staging proof
+1fb532e Update dry practice and add staging demo
+22b53ea Add refactor challenge output
+1cf454a Add DRY practice script
+3bb75f9 Add movie count output file
+292908e Add movie count output file
+1a5ffd7 Create first modular function for data loading

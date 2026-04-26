@@ -1,0 +1,7 @@
+--- Sorted Recommendations (Top 5) ---
+               movie_title  similarity_score
+2               Iron Man 2              0.98
+0             The Avengers              0.92
+5          Captain America              0.88
+4  Guardians of the Galaxy              0.85
+6                     Thor              0.80

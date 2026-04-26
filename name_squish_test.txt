@@ -1,0 +1,4 @@
+Original: ['Tom Cruise', 'Tom Hanks', 'Scarlett Johansson', 'Christopher Nolan']
+Squished: ['TomCruise', 'TomHanks', 'ScarlettJohansson', 'ChristopherNolan']
+
+✅ Success: The 'Tom' confusion has been prevented!
