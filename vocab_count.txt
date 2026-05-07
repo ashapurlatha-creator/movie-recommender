@@ -1,0 +1,1 @@
+My engine identified 9 unique words across 5,000 movies. This represents the 'mental map' the computer will use to find similarities.

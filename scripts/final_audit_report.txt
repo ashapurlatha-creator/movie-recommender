@@ -1,0 +1,7 @@
+--- Starting Module 4 Final Audit ---
+📊 AUDIT: Comparing 'Iron Man' and 'Avengers: Age of Ultron'
+📐 Mathematical Score: 0.4818
+✅ PASS: The engine recognizes these movies are related.
+📊 AUDIT: Comparing 'Iron Man' and 'Finding Nemo'
+📐 Mathematical Score: 0.102
+❌ FAIL: The score is too low. Check your vectorization settings.

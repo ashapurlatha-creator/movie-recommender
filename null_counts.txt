@@ -1,0 +1,1 @@
+ the  tagline column has 844 missing values. This tells me that many movies do not have a catchy subtitle, and I might need to ignore this column for my engine.

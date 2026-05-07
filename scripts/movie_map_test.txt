@@ -1,0 +1,10 @@
+(.venv) PS C:\Users\Ashapur latha\OneDrive\Desktop\movie-recommender> python scripts/concept_vector.py
+--- The Movie Map (Vectorization Concept) ---
+Star Wars lives at coordinates: [9, 10]
+Fast & Furious lives at coordinates: [10, 1]
+Interstellar lives at coordinates: [3, 9]
+Avatar lives at coordinates: [8, 8]
+
+Robot Logic:
+Star Wars and Interstellar both have high 'Space' numbers (10 and 9).
+Therefore, the robot recommends Interstellar to a Star Wars fan!

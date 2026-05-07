@@ -1,0 +1,3 @@
+❌ Sorry, 'Iron Man' is not in our database. Please check your spelling.
+❌ Sorry, 'Batman' is not in our database. Please check your spelling.
+🚀 Program finished successfully without crashing.

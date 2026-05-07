@@ -1,0 +1,5 @@
+(.venv) PS C:\Users\Ashapur latha\OneDrive\Desktop\movie-recommender> python scripts/dry_practice.py
+✨ Cleaned the overview column!
+✨ Cleaned the tagline column!
+✨ Cleaned the homepage column!
+✨ Cleaned the original_language column

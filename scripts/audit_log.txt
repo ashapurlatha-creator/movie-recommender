@@ -1,0 +1,2 @@
+--- Workspace Audit for: movie-recommender ---
+SUCCESS: 'scripts' folder detected. Your workspace is organized!

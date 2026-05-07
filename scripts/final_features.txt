@@ -1,0 +1,11 @@
+0  [{"id": 28, "name": "Action"}, {"id": 12, "nam...   19995  ...  [{"credit_id": "52fe48009251416c750aca23", "de...   162.0
+1  [{"id": 12, "name": "Adventure"}, {"id": 14, "...     285  ...  [{"credit_id": "52fe4232c3a36847f800b579", "de...   169.0
+2  [{"id": 28, "name": "Action"}, {"id": 12, "nam...  206647  ...  [{"credit_id": "54805967c3a36829b5002c41", "de...   148.0
+3  [{"id": 28, "name": "Action"}, {"id": 80, "nam...   49026  ...  [{"credit_id": "52fe4781c3a36847f81398c3", "de...   165.0
+4  [{"id": 28, "name": "Action"}, {"id": 12, "nam...   49529  ...  [{"credit_id": "52fe479ac3a36847f813eaa3", "de...   132.0
+
+[5 rows x 8 columns]
+
+--- Efficiency Check ---
+Original Column Count: 23
+Feature Column Count: 8

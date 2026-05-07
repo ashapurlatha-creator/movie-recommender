@@ -1,0 +1,5 @@
+--- Dataset Arrival Check ---
+✅ File Found: data/movies_5000.csv
+✅ File Size: 5.43 MB
+✅ Status: Dataset looks healthy and ready for processing!
+------------------------------

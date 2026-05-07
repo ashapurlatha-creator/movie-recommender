@@ -1,0 +1,1 @@
+I discovered that the word 'the' is considered a stop-word.
