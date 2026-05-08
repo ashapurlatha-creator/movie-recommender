@@ -1,30 +1,37 @@
-# Import necessary tools
+# Import the tools we need
 import pickle
 import pandas as pd
 
-# Standard loader function we've built
+
+# Function to load saved data
 def load_assets():
-    with open('models/movies_list.pkl', 'rb') as f:
-        movies = pickle.load(f)
-    with open('models/similarity.pkl', 'rb') as f:
-        sim = pickle.load(f)
-    return movies, sim
+    with open("models/movies_list.pkl", "rb") as f:
+        movies = pickle.load(f)  # Read the movie dataframe
+    with open("models/similarity.pkl", "rb") as f:
+        sim = pickle.load(f)  # Read the similarity matrix
+    return movies, sim  # Send them back to the caller
 
-# Recommendation logic
+
+# The function we will 'Step' through
 def get_recommendations(movie_name, movies_df, sim_matrix):
-    # --- STEP 1: SET A BREAKPOINT ON THE LINE BELOW ---
-    idx = movies_df[movies_df['title'] == movie_name].index[0]
-    
-    # We will use the console to look at 'distances' before the code finishes
-    distances = sim_matrix[idx]
-    
-    # Final sorting logic
-    sorted_list = sorted(list(enumerate(distances)), reverse=True, key=lambda x: x[1])[1:6]
-    
-    for i in sorted_list:
-        print(movies_df.iloc[i[0]].title)
+    # Step 1: Find index
+    idx = movies_df[movies_df["title"] == movie_name].index[0]
 
-# Execution
+    # Step 2: Get similarity row
+    distances = sim_matrix[idx]
+
+    # Step 3: Enumerate and Sort
+    # Watch how this variable changes as you step over it!
+    sorted_list = sorted(list(enumerate(distances)), reverse=True, key=lambda x: x[1])[
+        1:6
+    ]
+
+    # Step 4: Final loop
+    for i in sorted_list:
+        print(movies_df.iloc[i[0]].title)  # Print the names one by one
+
+
+# Main logic
 if __name__ == "__main__":
-    m_list, s_matrix = load_assets()
-    get_recommendations("Batman Begins", m_list, s_matrix)
+    m_list, s_matrix = load_assets()  # Calling the loader
+    get_recommendations("Batman Begins", m_list, s_matrix)  # Calling the engine
