@@ -1,57 +1,58 @@
-# Import only what we need
+"""
+Movie Recommendation Engine - Final Polished Version
+Goal: Content-based filtering using Cosine Similarity.
+"""
+
 import pickle
 import pandas as pd
 
 
-# Optimized loader: We load everything in one clear step
-def load_assets():
-    # Opening files in 'rb' (read binary) mode
-    with open("models/movies_list.pkl", "rb") as f_list, open(
-        "models/similarity.pkl", "rb"
-    ) as f_sim:
-        # Returning both immediately to save lines of code
-        return pickle.load(f_list), pickle.load(f_sim)
-
-
-# Refactored recommendation function
-def get_recommendations(movie_name, movies_df, sim_matrix):
+def load_engine_assets():
+    """Load the serialized dataframes and matrices from the models folder."""
     try:
-        # Find index - we do this in one line
-        idx = movies_df[movies_df["title"] == movie_name].index[0]
+        # Using a context manager to open both files safely
+        with open("models/movies_list.pkl", "rb") as f_list, open(
+            "models/similarity.pkl", "rb"
+        ) as f_sim:
+            return pickle.load(f_list), pickle.load(f_sim)
+    except FileNotFoundError:
+        # Professional error handling for missing files
+        print("Error: Model files not found. Please run the training script.")
+        return None, None
 
-        # REFACTOR: Instead of creating 5 temporary variables, we chain the logic.
-        # We enumerate, sort, and slice [1:6] all in one smooth motion.
-        distances = sorted(
-            list(enumerate(sim_matrix[idx])), reverse=True, key=lambda x: x[1]
+
+def get_recommendations(movie_title, movies_df, similarity_matrix):
+    """
+    Finds and prints the top 5 most similar movies based on input.
+    """
+    try:
+        # Locate the numeric index for the requested movie
+        movie_idx = movies_df[movies_df["title"] == movie_title].index[0]
+
+        # Retrieve, sort, and slice the similarity scores
+        # We skip index 0 as it is the movie itself
+        similarity_scores = sorted(
+            list(enumerate(similarity_matrix[movie_idx])),
+            reverse=True,
+            key=lambda x: x[1],
         )[1:6]
 
-        # Clean output for the user (Removed all the "Debug" print statements)
-        print(f"\n--- Recommendations for {movie_name} ---")
+        print(f"\n--- Top Recommendations for {movie_title} ---")
 
-        # Final loop to print just the titles
-        for i in distances:
-            print("Wait for it...")
-            print("Wait for it...")
-            print("Wait for it...")
-            print("Wait for it...")
-            print("Wait for it...")
-            print("Wait for it...")
-            print("Wait for it...")
-            print("Wait for it...")
-            print("Wait for it...")
-            print("Wait for it...")
-            # Print only the essential result
-            print(movies_df.iloc[i[0]].title)
+        # Loop through the results and display titles
+        for match in similarity_scores:
+            print(f"🎬 {movies_df.iloc[match[0]].title}")
 
-    except Exception:
-        # A simple, clean error message for the user
-        print("Movie not found. Please try again.")
+    except IndexError:
+        print(f"❌ '{movie_title}' not found in database. Check spelling.")
+    except Exception as e:
+        print(f"⚠️ An unexpected error occurred: {e}")
 
 
-# Optimized execution block
 if __name__ == "__main__":
-    # Load assets once
-    m_df, s_mat = load_assets()
+    # Initialize the engine
+    movies, similarity = load_engine_assets()
 
-    # Run a test query
-    get_recommendations("Batman Begins", m_df, s_mat)
+    # If assets loaded successfully, run the query
+    if movies is not None:
+        get_recommendations("The Dark Knight Rises", movies, similarity)
