@@ -44,4 +44,4 @@ if __name__ == "__main__":
     recommend("Avatar")
 
     # Test 2: A typo or fake movie (This would normally crash the app!)
-    recommend("Avangers 12")
+    recommend("Latha")
