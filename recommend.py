@@ -1,31 +1,24 @@
-# --- (Previous load_engine and find_movie_index code remains above) ---
+# --- (Previous logic for loading and accessing the row remains above) ---
 import pickle
 import pandas as pd
 
-# 1. Load the engine assets (Movie list and Matrix)
-with open("models/movies_list.pkl", "rb") as f:
-    movies_list = pickle.load(f)
-with open("models/similarity.pkl", "rb") as f:
-    similarity_matrix = pickle.load(f)
+# Assume we have our similarity_row from Topic 4 (a list of scores)
+# For this demo, we'll use a small dummy version of a similarity row
+dummy_row = [0.12, 0.99, 0.45, 0.01]
 
-# 2. Let's pick a target movie (Simulating user input)
-user_input = "Iron Man"
+# --- NEW TOPIC 5 LOGIC START ---
 
-# 3. Use our function from Topic 3 to find the Index
-movie_idx = movies_list[movies_list["title"] == user_input].index[0]
+# Use enumerate() to staple the Index to the Score
+# This creates a list of 'Tuples' like (index, score)
+stapled_scores = list(enumerate(dummy_row))
 
-# --- NEW TOPIC 4 LOGIC START ---
+# Print the result to the terminal
+print("--- The Enumeration Hack ---")
+print(f"Original Row: {dummy_row}")
+print(f"Stapled Pairs: {stapled_scores}")
 
-# 4. Extract the single row of similarity scores for 'Iron Man'
-# We use the movie_idx to tell the matrix which row we want
-similarity_row = similarity_matrix[movie_idx]
+# Explain what we see
+print(f"\nThe first item is {stapled_scores[0]}.")
+print(f"This means Movie Index 0 has a similarity score of {stapled_scores[0][1]}.")
 
-# 5. Print the results to verify
-print(f"✅ Successfully accessed row for: {user_input}")
-print(f"📊 Total scores in this row: {len(similarity_row)}")
-
-# 6. Take a peek at the first 10 scores
-# These are the decimals representing 'closeness'
-print(f"🔢 Sample scores: {similarity_row[:10]}")
-
-# Note: One of these scores will be 1.0 (The movie's similarity to itself!)
+# This list of pairs is what we will sort in the next lesson!
