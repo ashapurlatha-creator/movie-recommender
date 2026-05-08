@@ -1,2 +1,3 @@
-✅ Fast Loading Complete in 1.0817 seconds!
-Loading the pre-calculated engine was about 5 times faster than calculating it from scratch.
+Fast version: 1.08 seconds
+Slow version: 4.50 seconds
+Difference: 3.42 seconds
