@@ -1,0 +1,1 @@
+I accessed the similarity row for Iron Man. The row contains 4,803 scores, and I see decimal values that represent how similar other movies are to my choice. The highest sample score is 0.16467796.
