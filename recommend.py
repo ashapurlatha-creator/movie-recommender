@@ -39,3 +39,12 @@ print("\nRec # | Movie Index | Similarity")
 
 for i, movie in enumerate(top_5_indices):
     print(f"  {i+1}   |      {movie[0]}      |    {movie[1]}")
+numbers = [100, 101, 102, 103, 104, 105, 106, 107, 108, 109]
+
+middle_numbers = numbers[3:6]
+
+print("Original List:")
+print(numbers)
+
+print("\nMiddle 3 Numbers:")
+print(middle_numbers)
