@@ -1,0 +1,10 @@
+⏳ Loading the Recommendation Engine...
+✅ Engine Ready! Loaded 4803 movies.
+
+--- Preview of Movie Library ---
+0                                      Avatar
+1    Pirates of the Caribbean: At World's End
+2                                     Spectre
+3                       The Dark Knight Rises
+4                                 John Carter
+Name: title, dtype: str
