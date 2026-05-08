@@ -49,7 +49,7 @@ def get_recommendations(movie_title, movies_df, similarity_matrix):
 
 
 if __name__ == "__main__":
-    # Initialize the engine
+    # Initialize the engin
     movies, similarity = load_engine_assets()
 
     # If assets loaded successfully, run the query
