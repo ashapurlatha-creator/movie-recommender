@@ -1,37 +1,45 @@
-# Import the pickle library to load our binary brain files
+# --- (Previous Load Engine Code remains above) ---
 import pickle
-
-# Import pandas to handle the movie data table
 import pandas as pd
 
 
-# Define a function to load our assets
 def load_engine():
-    # Print a status message to the terminal
-    print("⏳ Loading the Recommendation Engine...")
-
-    # Open and load the movie list dictionary/dataframe
-    # 'rb' stands for 'Read Binary'
+    # Loading logic from Topic 2
     with open("models/movies_list.pkl", "rb") as f:
         movies = pickle.load(f)
-
-    # Open and load the similarity matrix (the big math grid)
     with open("models/similarity.pkl", "rb") as f:
         similarity = pickle.load(f)
-
-    # Return both items so the rest of the script can use them
     return movies, similarity
 
 
-# --- START THE SCRIPT ---
-# We check if this is the main file being run
+# --- NEW TOPIC 3 CODE START ---
+
+
+# Define a function to find the row number (index) of a movie
+def find_movie_index(movie_title, movies_df):
+    # Search the 'title' column for a match with the user's input
+    # .iloc[0] ensures we get just the index value, not a whole series
+    try:
+        index = movies_df[movies_df["title"] == movie_title].index[0]
+        # Return the numeric position
+        return index
+    except IndexError:
+        # If the movie isn't in our 5k dataset, return None
+        return None
+
+
+# --- TESTING THE FINDER ---
 if __name__ == "__main__":
-    # Call the loader function and store the results in variables
+    # Load the data
     movies_list, similarity_matrix = load_engine()
 
-    # Print a success message with the data size
-    print(f"✅ Engine Ready! Loaded {len(movies_list)} movies.")
+    # Test with a known movie
+    target = "Iron Man"
+    idx = find_movie_index(target, movies_list)
 
-    # Display the first 5 movie titles to confirm the data is correct
-    print("\n--- Preview of Movie Library ---")
-    print(movies_list["title"].head())
+    if idx is not None:
+        # Print the success message
+        print(f"✅ Found it! '{target}' is located at Index: {idx}")
+    else:
+        # Print an error if misspelled or missing
+        print(f"❌ Error: '{target}' was not found in our database.")
