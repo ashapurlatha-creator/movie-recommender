@@ -1,0 +1,3 @@
+Syntax Error made the terminal angry with red error text because the code was broken.
+
+Changing 0.1 to 99.9 did not crash the program. It only gave a weird result.

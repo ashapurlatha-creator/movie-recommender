@@ -4,7 +4,7 @@ import pandas as pd
 # Let's create a tiny dummy 'Similarity Row'
 # Format: (Movie Index, Similarity Score)
 # We want the highest score (0.98) to be the recommendation
-mock_scores = [(0, 0.1), (1, 0.98), (2, 0.5), (3, 0.05)]
+mock_scores = [(0, 99.9), (1, 0.98), (2, 0.5), (3, 0.05)]
 
 print("--- Start Bug Test ---")
 
