@@ -30,3 +30,12 @@ print(sorted_matches[:3])
 winner_index = sorted_matches[0][0]  # Get the index of the top match
 winner_score = sorted_matches[0][1]  # Get the score of the top match
 print(f"\n🏆 The winner is Movie Index {winner_index} with a score of {winner_score}")
+top_5_indices = sorted_matches[1:6]
+
+print("--- The Final 5 Recommendations (Indices & Scores) ---")
+print(top_5_indices)
+
+print("\nRec # | Movie Index | Similarity")
+
+for i, movie in enumerate(top_5_indices):
+    print(f"  {i+1}   |      {movie[0]}      |    {movie[1]}")
