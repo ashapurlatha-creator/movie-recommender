@@ -30,6 +30,16 @@ def get_recommendations(movie_name, movies_df, sim_matrix):
 
         # Final loop to print just the titles
         for i in distances:
+            print("Wait for it...")
+            print("Wait for it...")
+            print("Wait for it...")
+            print("Wait for it...")
+            print("Wait for it...")
+            print("Wait for it...")
+            print("Wait for it...")
+            print("Wait for it...")
+            print("Wait for it...")
+            print("Wait for it...")
             # Print only the essential result
             print(movies_df.iloc[i[0]].title)
 
