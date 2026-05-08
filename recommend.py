@@ -1,53 +1,54 @@
-# --- (Existing Load logic remains at the top) ---
-import pickle
-import pandas as pd
-
-# Assume movies_list and similarity_matrix are loaded via load_engine()
+# Import the necessary libraries
+import pickle  # For loading our saved matrix and list
+import pandas as pd  # For handling our movie data
 
 
-def recommend(movie):
+# Function to load our pre-calculated brain
+def load_assets():
+    # Load the movie list dataframe
+    with open("models/movies_list.pkl", "rb") as f:
+        movies = pickle.load(f)
+    # Load the similarity scores matrix
+    with open("models/similarity.pkl", "rb") as f:
+        sim = pickle.load(f)
+    return movies, sim  # Return both to the main script
+
+
+# The core recommendation engine function
+def get_recommendations(movie_name, movies_df, sim_matrix):
     try:
-        # Step 1: Find the index of the user's movie
-        index = movies_list[movies_list["title"] == movie].index[0]
+        # Step 1: Find the index of the movie provided by the user
+        idx = movies_df[movies_df["title"] == movie_name].index[0]
 
-        # Step 2: Get the similarity scores and sort them (stapled with indices)
-        # We take the slice [1:6] to get the top 5 matches (skipping the movie itself)
-        distances = sorted(
-            list(enumerate(similarity_matrix[index])), reverse=True, key=lambda x: x[1]
-        )
-        top_5 = distances[1:6]
+        # Step 2: Get the similarity row for that index and enumerate it
+        # This staples (index, score) pairs together
+        score_series = list(enumerate(sim_matrix[idx]))
 
-        # Step 3: The Display Header
-        print(f"\n🌟 Because you liked '{movie}', you might also enjoy:")
-        print("-" * 40)
+        # Step 3: Sort the list based on the score (index 1 of the tuple)
+        # reverse=True puts the highest scores at the top
+        sorted_scores = sorted(score_series, reverse=True, key=lambda x: x[1])
 
-        # --- NEW TOPIC 9 LOGIC START ---
+        # Step 4: Slice the list to get the top 5 (skipping index 0)
+        top_matches = sorted_scores[1:6]
 
-        # Step 4: The Final Loop
-        # We iterate through each 'tuple' (pair) in our top_5 list
-        for i in top_5:
-            # i[0] is the index of the recommended movie
-            recommended_movie_index = i[0]
-
-            # Use .iloc to find the title at that specific index in our DataFrame
-            movie_title = movies_list.iloc[recommended_movie_index].title
-
-            # Print the title to the terminal
-            print(f"🎬 {movie_title}")
-
-        print("-" * 40)
+        # Step 5: Display the results
+        print(f"\n🎬 Recommendations for '{movie_name}':")
+        for match in top_matches:
+            # Look up the title using the index (match[0])
+            print(f"✨ {movies_df.iloc[match[0]].title}")
 
     except IndexError:
-        print(f"❓ Movie '{movie}' not found. Please check your spelling!")
+        # Handle cases where the movie isn't in our dataset
+        print(f"\n❌ Error: '{movie_name}' not found. Please check spelling!")
 
 
-# --- TESTING THE FULL ENGINE ---
+# --- MAIN EXECUTION BLOCK ---
 if __name__ == "__main__":
-    # Ensure variables are populated
-    with open("models/movies_list.pkl", "rb") as f:
-        movies_list = pickle.load(f)
-    with open("models/similarity.pkl", "rb") as f:
-        similarity_matrix = pickle.load(f)
+    # Load assets into variables
+    m_list, s_matrix = load_assets()
 
-    # Test the final display logic
-recommend("The Dark Knight Rises")
+    # THE FINAL TEST: The course goal query
+    get_recommendations("Iron Man", m_list, s_matrix)
+
+    # Bonus Test: Try a different genre
+    get_recommendations("The Lion King", m_list, s_matrix)
