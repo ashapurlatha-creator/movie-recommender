@@ -50,4 +50,4 @@ if __name__ == "__main__":
         similarity_matrix = pickle.load(f)
 
     # Test the final display logic
-    recommend("Iron Man")
+recommend("The Dark Knight Rises")
