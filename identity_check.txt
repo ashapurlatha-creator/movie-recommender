@@ -1,0 +1,4 @@
+🔍 Checking your local Git identity...
+👤 Current Name: Latha
+📧 Current Email: ashapurlatha@gmail.com
+✅ Local identity found. Ready to link to GitHub!
