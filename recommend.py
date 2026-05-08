@@ -48,7 +48,6 @@ if __name__ == "__main__":
     m_list, s_matrix = load_assets()
 
     # THE FINAL TEST: The course goal query
-    get_recommendations("Iron Man", m_list, s_matrix)
-
+    get_recommendations("The Dark Knight", m_list, s_matrix)
     # Bonus Test: Try a different genre
     get_recommendations("The Lion King", m_list, s_matrix)
