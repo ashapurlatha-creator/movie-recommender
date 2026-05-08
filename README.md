@@ -58,3 +58,20 @@ Created by [A.Latha] during the Data Science Internship.
 **The Preview Proof:** Open your `README.md` and use the **Markdown Preview** in VS Code. Once it looks perfect, **copy the formatted text from the Preview window** (not the code side) and paste it into a simple text file named `readme_check.txt`. This confirms you've successfully created a professional "front door" for your internship project!
 
 **Would you like me to move on to Topic 4: Markdown Live Preview?**
+## 🧪 Sample Output
+When you search for **"Iron Man"**, the engine returns:
+- [x] Iron Man 2
+- [x] Iron Man 3
+- [x] Avengers: Age of Ultron
+- [x] Captain America: Civil War
+- [x] The Avengers
+
+> **Note:** The similarity scores are calculated based on plot summaries and genres!
+
+### 📈 Project Status
+| Task | Status |
+| :--- | :--- |
+| Data Cleaning | Completed ✅ |
+| Vectorization | Completed ✅ |
+| Search Logic | Completed ✅ |
+| GitHub Launch | **In Progress** 🚀 |
