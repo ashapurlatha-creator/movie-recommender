@@ -1,44 +1,41 @@
 # Import the tools we need
-import pickle  # Used for loading our serialized files
-import pandas as pd  # Used for data manipulation
+import pickle
+import pandas as pd
 
 
-# Function to load our pre-calculated data
+# Load assets function
 def load_assets():
-    # Load the movie list from the models folder
     with open("models/movies_list.pkl", "rb") as f:
-        movies = pickle.load(f)
-    # Load the similarity scores matrix
+        movies = pickle.load(f)  # Load movie names
     with open("models/similarity.pkl", "rb") as f:
-        sim = pickle.load(f)
-    # Return both assets to the caller
+        sim = pickle.load(f)  # Load math scores
     return movies, sim
 
 
-# Function to generate recommendations
+# Recommendation function
 def get_recommendations(movie_name, movies_df, sim_matrix):
-    # --- SET BREAKPOINT HERE ---
-    # We want to see how we arrived at this specific line of logic
+    # Find index of input movie
     idx = movies_df[movies_df["title"] == movie_name].index[0]
+    # Get similarity row
+    distances = sorted(
+        list(enumerate(sim_matrix[idx])), reverse=True, key=lambda x: x[1]
+    )
+    # Take top 10 matches this time
+    top_matches = distances[1:11]
 
-    # Calculate similarity row
-    distances = sim_matrix[idx]
+    print(f"\nSearching for high-match relatives of {movie_name}...")
 
-    # Sort and slice top 5
-    sorted_list = sorted(list(enumerate(distances)), reverse=True, key=lambda x: x[1])[
-        1:6
-    ]
+    # The Loop we will debug
+    for match in top_matches:
+        # 'match' is a tuple like (index, score)
+        score = match[1]
+        # --- WE WILL SET A CONDITIONAL BREAKPOINT ON THE LINE BELOW ---
+        movie_title = movies_df.iloc[match[0]].title
+        # Print the results
+        print(f"Checking: {movie_title} (Score: {score})")
 
-    # Print results to terminal
-    for i in sorted_list:
-        print(f"🎬 {movies_df.iloc[i[0]].title}")
 
-
-# The 'Entry Point' of our script
+# Execution
 if __name__ == "__main__":
-    # First, we call the loader
     m_list, s_matrix = load_assets()
-
-    # Next, we call the engine
-    # This is the 'Parent' call that starts the stack for the engine
-    get_recommendations("Avatar", m_list, s_matrix)
+    get_recommendations("Iron Man", m_list, s_matrix)
