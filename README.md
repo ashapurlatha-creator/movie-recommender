@@ -75,3 +75,10 @@ When you search for **"Iron Man"**, the engine returns:
 | Vectorization | Completed ✅ |
 | Search Logic | Completed ✅ |
 | GitHub Launch | **In Progress** 🚀 |
+## 🎬 Favorite Movies
+
+| Movie | Genre |
+| --- | --- |
+| Interstellar | Sci-Fi |
+| The Dark Knight | Action |
+| Iron Man | Superhero |
