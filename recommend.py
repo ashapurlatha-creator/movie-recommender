@@ -1,33 +1,22 @@
-# --- (Previous logic for loading and accessing the row remains above) ---
-import pickle
-import pandas as pd
+# --- (Previous logic for loading, indexing, and enumerating remains above) ---
 
-with open("models/movies_list.pkl", "rb") as f:
-    movies_list = pickle.load(f)
+# This is a sample of our 'stapled_scores' from Topic 5
+# Format: [(Index, Score), (Index, Score), ...]
+sample_stapled = [(0, 0.12), (1, 0.99), (2, 0.45), (3, 0.01)]
 
-with open("models/similarity.pkl", "rb") as f:
-    similarity_matrix = pickle.load(f)
+# --- NEW TOPIC 6 LOGIC START ---
 
-# Assume we have our similarity_row from Topic 4 (a list of scores)
-# For this demo, we'll use a small dummy version of a similarity row
-# dummy_row = [0.12, 0.99, 0.45, 0.01]
-user_input = "Iron Man"
+# We use the 'sorted' function to reorganize our list
+# 1. 'reverse=True' means we want Descending order (Highest score first)
+# 2. 'key=lambda x: x[1]' tells Python: "Sort by the second item in the pair (the score)"
+sorted_matches = sorted(sample_stapled, reverse=True, key=lambda x: x[1])
 
-movie_idx = movies_list[movies_list["title"] == user_input].index[0]
+# Print the results to see the 'Winners'
+print("--- Sorting Results ---")
+print(f"Before Sort: {sample_stapled}")
+print(f"After Sort:  {sorted_matches}")
 
-similarity_row = similarity_matrix[movie_idx]
-
-# --- NEW TOPIC 5 LOGIC START ---
-
-# Use enumerate() to staple the Index to the Score
-# This creates a list of 'Tuples' like (index, score)
-stapled_scores = list(enumerate(similarity_row))
-# Print the result to the terminal
-print("--- The Enumeration Hack ---")
-print(stapled_scores[:3])
-
-# Explain what we see
-print(f"\nThe first item is {stapled_scores[0]}.")
-print(f"This means Movie Index 0 has a similarity score of {stapled_scores[0][1]}.")
-
-# This list of pairs is what we will sort in the next lesson!
+# Explain the winner
+winner_index = sorted_matches[0][0]  # Get the index of the top match
+winner_score = sorted_matches[0][1]  # Get the score of the top match
+print(f"\n🏆 The winner is Movie Index {winner_index} with a score of {winner_score}")
