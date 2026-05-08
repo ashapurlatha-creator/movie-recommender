@@ -1,37 +1,41 @@
-# Import the tools we need
+# Import necessary libraries
 import pickle
 import pandas as pd
 
 
-# Function to load saved data
+# Function to load our serialized data
 def load_assets():
     with open("models/movies_list.pkl", "rb") as f:
-        movies = pickle.load(f)  # Read the movie dataframe
+        movies = pickle.load(f)  # Loading the movie list
     with open("models/similarity.pkl", "rb") as f:
-        sim = pickle.load(f)  # Read the similarity matrix
-    return movies, sim  # Send them back to the caller
+        sim = pickle.load(f)  # Loading the similarity matrix
+    return movies, sim
 
 
-# The function we will 'Step' through
+# Our main engine function
 def get_recommendations(movie_name, movies_df, sim_matrix):
-    # Step 1: Find index
+    # Find the index of the chosen movie
     idx = movies_df[movies_df["title"] == movie_name].index[0]
 
-    # Step 2: Get similarity row
-    distances = sim_matrix[idx]
+    # Get and sort similarity scores
+    distances = sorted(
+        list(enumerate(sim_matrix[idx])), reverse=True, key=lambda x: x[1]
+    )
 
-    # Step 3: Enumerate and Sort
-    # Watch how this variable changes as you step over it!
-    sorted_list = sorted(list(enumerate(distances)), reverse=True, key=lambda x: x[1])[
-        1:6
-    ]
+    # Slice the top 5 (skipping the first one)
+    top_matches = distances[1:6]
 
-    # Step 4: Final loop
-    for i in sorted_list:
-        print(movies_df.iloc[i[0]].title)  # Print the names one by one
+    print(f"\nRecommendations for {movie_name}:")
+
+    # The Loop: This is what we want to 'Watch'
+    for match in top_matches:
+        # We extract the title for the current match
+        current_title = movies_df.iloc[match[0]].title
+        # Print the title to terminal
+        print(f"🎬 {current_title}")
 
 
-# Main logic
+# Execution block
 if __name__ == "__main__":
-    m_list, s_matrix = load_assets()  # Calling the loader
-    get_recommendations("Batman Begins", m_list, s_matrix)  # Calling the engine
+    m_list, s_matrix = load_assets()
+    get_recommendations("Iron Man", m_list, s_matrix)
