@@ -34,7 +34,7 @@ if __name__ == "__main__":
     movies_list, similarity_matrix = load_engine()
 
     # Test with a known movie
-    target = "Iron Man"
+    target = "Spectre"
     idx = find_movie_index(target, movies_list)
 
     if idx is not None:
