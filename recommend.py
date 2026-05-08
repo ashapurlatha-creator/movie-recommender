@@ -1,50 +1,47 @@
+# --- (Existing Load logic remains at the top) ---
 import pickle
 import pandas as pd
 
-with open("models/movies_list.pkl", "rb") as f:
-    movies_list = pickle.load(f)
-
-with open("models/similarity.pkl", "rb") as f:
-    similarity_matrix = pickle.load(f)
+# Assume movies_list and similarity_matrix are already loaded via load_engine()
 
 
-# --- (Previous logic for loading, indexing, and enumerating remains above) --
-# This is a sample of our 'stapled_scores' from Topic 5
-# Format: [(Index, Score), (Index, Score), ...]
-user_input = "Avatar"
+def recommend(movie):
+    # The 'Try' block: Python attempts to run this code first
+    try:
+        # Step 1: Attempt to find the index of the movie
+        # If the movie name doesn't exist, this line triggers an 'IndexError'
+        index = movies_list[movies_list["title"] == movie].index[0]
 
-movie_idx = movies_list[movies_list["title"] == user_input].index[0]
-similarity_row = similarity_matrix[movie_idx]
-stapled_scores = list(enumerate(similarity_row))
+        # Step 2: If found, proceed with our similarity logic
+        distances = sorted(
+            list(enumerate(similarity_matrix[index])), reverse=True, key=lambda x: x[1]
+        )
 
-# --- NEW TOPIC 6 LOGIC START ---
+        # Step 3: Print a success message
+        print(f"✅ Success! Showing recommendations for: {movie}")
 
-# We use the 'sorted' function to reorganize our list
-# 1. 'reverse=True' means we want Descending order (Highest score first)
-# 2. 'key=lambda x: x[1]' tells Python: "Sort by the second item in the pair (the score)"
-sorted_matches = sorted(stapled_scores, reverse=True, key=lambda x: x[1])
-# Print the results to see the 'Winners'
-print("--- Sorting Results ---")
-print(sorted_matches[:3])
-# Explain the winner
-winner_index = sorted_matches[0][0]  # Get the index of the top match
-winner_score = sorted_matches[0][1]  # Get the score of the top match
-print(f"\n🏆 The winner is Movie Index {winner_index} with a score of {winner_score}")
-top_5_indices = sorted_matches[1:6]
+    # The 'Except' block: This runs ONLY if something goes wrong in the Try block
+    except IndexError:
+        # If the index wasn't found, we catch the error and print a friendly message
+        print(
+            f"❓ Sorry! '{movie}' isn't in our 5,000-movie database. Check your spelling!"
+        )
 
-print("--- The Final 5 Recommendations (Indices & Scores) ---")
-print(top_5_indices)
+    # Optional: Catching any other unexpected errors
+    except Exception as e:
+        print(f"⚠️ An unexpected error occurred: {e}")
 
-print("\nRec # | Movie Index | Similarity")
 
-for i, movie in enumerate(top_5_indices):
-    print(f"  {i+1}   |      {movie[0]}      |    {movie[1]}")
-numbers = [100, 101, 102, 103, 104, 105, 106, 107, 108, 109]
+# --- TESTING THE SAFETY NET ---
+if __name__ == "__main__":
+    # We load the data once
+    with open("models/movies_list.pkl", "rb") as f:
+        movies_list = pickle.load(f)
+    with open("models/similarity.pkl", "rb") as f:
+        similarity_matrix = pickle.load(f)
 
-middle_numbers = numbers[3:6]
+    # Test 1: A valid movie
+    recommend("Avatar")
 
-print("Original List:")
-print(numbers)
-
-print("\nMiddle 3 Numbers:")
-print(middle_numbers)
+    # Test 2: A typo or fake movie (This would normally crash the app!)
+    recommend("Avangers 12")
