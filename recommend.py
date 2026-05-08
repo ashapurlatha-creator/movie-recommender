@@ -1,35 +1,30 @@
-# Import the necessary libraries
-import pickle # For loading our saved matrix and list
-import pandas as pd # For handling our movie data
+# Import necessary tools
+import pickle
+import pandas as pd
 
-# Function to load our pre-calculated brain
+# Standard loader function we've built
 def load_assets():
-    # Load the movie list dataframe
     with open('models/movies_list.pkl', 'rb') as f:
         movies = pickle.load(f)
-    # Load the similarity scores matrix
     with open('models/similarity.pkl', 'rb') as f:
         sim = pickle.load(f)
-    return movies, sim # Return both to the main script
+    return movies, sim
 
-# The core recommendation engine function
+# Recommendation logic
 def get_recommendations(movie_name, movies_df, sim_matrix):
-    # --- WE WANT TO SET A BREAKPOINT ON THE LINE BELOW ---
-    idx = movies_df[movies_df['title'] == movie_name].index[0] # Step 1: Find index
+    # --- STEP 1: SET A BREAKPOINT ON THE LINE BELOW ---
+    idx = movies_df[movies_df['title'] == movie_name].index[0]
     
-    # After pausing, we can check if 'idx' is correct before sorting
-    score_series = list(enumerate(sim_matrix[idx])) # Step 2: Get similarity row
+    # We will use the console to look at 'distances' before the code finishes
+    distances = sim_matrix[idx]
     
-    sorted_scores = sorted(score_series, reverse=True, key=lambda x: x[1]) # Step 3: Sort
+    # Final sorting logic
+    sorted_list = sorted(list(enumerate(distances)), reverse=True, key=lambda x: x[1])[1:6]
     
-    top_matches = sorted_scores[1:6] # Step 4: Slice top 5
-    
-    print(f"\n🎬 Recommendations for '{movie_name}':") # Step 5: Header
-    for match in top_matches: # Step 6: Loop through results
-        print(f"✨ {movies_df.iloc[match[0]].title}") # Print titles
+    for i in sorted_list:
+        print(movies_df.iloc[i[0]].title)
 
-# --- MAIN EXECUTION BLOCK ---
+# Execution
 if __name__ == "__main__":
-    m_list, s_matrix = load_assets() # Load the assets
-    get_recommendations("Avatar", m_list, s_matrix) # Run the test query
-
+    m_list, s_matrix = load_assets()
+    get_recommendations("Batman Begins", m_list, s_matrix)
