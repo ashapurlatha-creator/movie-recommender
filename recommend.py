@@ -28,7 +28,6 @@ def get_recommendations(movie_title, movies_df, similarity_matrix):
     try:
         # Locate the numeric index for the requested movie
         movie_idx = movies_df[movies_df["title"] == movie_title].index[0]
-
         # Retrieve, sort, and slice the similarity scores
         # We skip index 0 as it is the movie itself
         similarity_scores = sorted(
